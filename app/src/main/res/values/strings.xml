@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">IMDB :Popular Movies</string>
+    <string name="movie_image">Movie Image</string>
+    <string name="server_error">Server Error</string>
+    <string name="no_data_available">No data available.</string>
+    <string name="poster">poster</string>
+    <string name="title">title</string>
+    <string name="popular">Popular</string>
+    <string name="select">Select</string>
+    <string name="release_date">Release Date %1$s</string>
+    <string name="movie_load_failure">Failed to get movie. Please try again!</string>
+
+</resources>

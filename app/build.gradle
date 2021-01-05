@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin:'kotlin-kapt'
+
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.rohit.movies"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "IMAGE_BASE_URL", "\"https://image.tmdb.org/t/p/w342\"")
+            buildConfigField "String", "API_KEY", '"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYzgwNDFkZmUyYmU1MWRiNTJlMGZmYWFkYWJlYmM4ZCIsInN1YiI6IjVhOTcyMzQwMGUwYTI2MDE1ZjAwNTMyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.sogWARNxbqkf9fduFd1vetw8KUyDn5xY1Bb_4sVJS1o"'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // UI
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+
+    // loading images
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // network
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
+    // videos
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
+
+    // Room - Data persistence
+    implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
+    kapt "android.arch.persistence.room:compiler:$roomVersion"
+
+    implementation "androidx.core:core-ktx:1.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // Koin for DI Android
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-scope:$koin_version"
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
+}
+repositories {
+    mavenCentral()
+}
